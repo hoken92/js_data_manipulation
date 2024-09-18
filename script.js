@@ -89,19 +89,19 @@ for (let i = 1; i < colsArray.length; i++) {
 
     switch (colsArray[i][j]) {
       case colsArray[i][0]:
-        listofObjects += `${headers[0]}: ${colsArray[i][j]}, `;
+        listofObjects.id = colsArray[i][j];
         break;
 
       case colsArray[i][1]:
-        listofObjects += `${headers[1]}: ${colsArray[i][j]}, `;
+        listofObjects.name = colsArray[i][j];
         break;
 
       case colsArray[i][2]:
-        listofObjects += `${headers[2]}: ${colsArray[i][j]}, `;
+        listofObjects.occupation = colsArray[i][j];
         break;
 
       case colsArray[i][3]:
-        listofObjects += `${headers[3]}: ${colsArray[i][j]}`;
+        listofObjects.age = colsArray[i][j];
         break;
     }
   }
@@ -114,9 +114,20 @@ console.log(directory);
 
 // Part 4
 // 1. Remove the last element from the sorted array.
+directory.pop();
 
 // 2. Insert the following object at index 1:
 //        { id: "48", name: "Barry", occupation: "Runner", age: "25" }
+directory.splice(1, 0, {
+  id: "48",
+  name: "Barry",
+  occupation: "Runner",
+  age: "25",
+});
 
 // 3. Add the following object to the end of the array:
 //        { id: "7", name: "Bilbo", occupation: "None", age: "111" }
+directory.push({ id: "7", name: "Bilbo", occupation: "None", age: "111" });
+console.log(directory);
+
+// Finally, use the values of each object within the array and the array’s length property to calculate the average age of the group. This calculation should be accomplished using a loop.
