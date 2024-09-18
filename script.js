@@ -71,17 +71,6 @@ for (let i = 0; i < cols.length; i++) {
 
 let directory = [];
 
-// find a way to grab the first array, turn it into all lower case. use a form of iteration to put them into objects
-
-let headers = [];
-
-for (let i = 0; i < colsArray[0].length; i++) {
-  let cell = colsArray[0][i];
-  headers.push(cell.toLowerCase());
-}
-
-// console.log(headers);
-
 for (let i = 1; i < colsArray.length; i++) {
   let listofObjects = {};
   for (let j = 0; j < colsArray[i].length; j++) {
@@ -110,7 +99,7 @@ for (let i = 1; i < colsArray.length; i++) {
   directory.push(listofObjects);
 }
 
-console.log(directory);
+// console.log(directory);
 
 // Part 4
 // 1. Remove the last element from the sorted array.
@@ -128,6 +117,24 @@ directory.splice(1, 0, {
 // 3. Add the following object to the end of the array:
 //        { id: "7", name: "Bilbo", occupation: "None", age: "111" }
 directory.push({ id: "7", name: "Bilbo", occupation: "None", age: "111" });
-console.log(directory);
+// console.log(directory);
 
 // Finally, use the values of each object within the array and the array’s length property to calculate the average age of the group. This calculation should be accomplished using a loop.
+
+let averageAge;
+let amountOfPeople = 0;
+
+for (let i = 0; i < directory.length; i++) {
+  if (directory[i].age != undefined) {
+    let age = directory[i].age;
+    averageAge = +age;
+    amountOfPeople++;
+  }
+}
+
+averageAge /= amountOfPeople;
+console.log(
+  `The average age for the directory array is ${averageAge} years old.`
+);
+
+// Part 5: Full Circle
