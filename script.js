@@ -138,3 +138,26 @@ console.log(
 );
 
 // Part 5: Full Circle
+
+let csvData = "";
+// let headers = Object.keys(directory[0]);
+
+// Need to iterate through the object/array once to grab keys
+// Then grab each object value
+// After each string, add a comma and space
+// After every row, such as the outer loop add a \n
+
+let headers;
+headers += `${Object.keys(directory[0]).toString()},`;
+
+console.log(headers);
+
+for (let i = 0; i < directory.length; i++) {
+  for (const value in directory[i]) {
+    csvData += `${directory[i][value].toString()},`;
+  }
+
+  csvData += "\n";
+}
+
+console.log(csvData);
