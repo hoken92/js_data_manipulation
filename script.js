@@ -49,7 +49,7 @@ for (let i = 0; i < csvString.length; i++) {
     (currentCell === 4 && csvString[i + 1] === "\n") ||
     i + 1 === csvString.length
   ) {
-    // console.log(cell1, cell2, cell3, cell4);
+    console.log(cell1, cell2, cell3, cell4);
   }
 }
 
@@ -65,6 +65,8 @@ for (let i = 0; i < cols.length; i++) {
   let cells = cols[i].split(",");
   colsArray.push(cells);
 }
+
+console.log(colsArray);
 
 // Part three
 // ==============================
@@ -99,7 +101,7 @@ for (let i = 1; i < colsArray.length; i++) {
   directory.push(listofObjects);
 }
 
-// console.log(directory);
+console.log(directory);
 
 // Part 4
 // 1. Remove the last element from the sorted array.
@@ -117,7 +119,7 @@ directory.splice(1, 0, {
 // 3. Add the following object to the end of the array:
 //        { id: "7", name: "Bilbo", occupation: "None", age: "111" }
 directory.push({ id: "7", name: "Bilbo", occupation: "None", age: "111" });
-// console.log(directory);
+console.log(directory);
 
 // Finally, use the values of each object within the array and the array’s length property to calculate the average age of the group. This calculation should be accomplished using a loop.
 
