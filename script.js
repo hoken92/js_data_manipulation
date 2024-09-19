@@ -1,62 +1,78 @@
-// Part One
+const csvString = `ID,Name,Occupation,Age,IsCool\n42,Bruce,Knight,41,true\n57,Bob,Fry Cook,19,true\n63,Blaine,Quiz Master,58,false\n98,Bill,Doctor's Assistant,26,true`;
 
-const csvString =
-  "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor’s Assistant,26";
+// Instead of having four different variables, create an array!
+//part 1
+let cells = [];
+let currentCell = 0;
 
-let cell1 = "";
-let cell2 = "";
-let cell3 = "";
-let cell4 = "";
+//part 2a
+let columns = 0;
+let currentRow = 0;
 
-let currentCell = 1;
+//part 2
+let table = [];
+
+//Ex: helper function
+function resetVars() {
+  cells = [];
+  currentCell = 0;
+}
 
 for (let i = 0; i < csvString.length; i++) {
   //checking for new cell
   if (csvString[i] === ",") {
+    // Part 2a
+    if (currentRow === 0) {
+      columns++;
+    }
+
     currentCell++;
     continue;
   }
   // checking for a new row
   if (csvString[i] === "\n") {
-    cell1 = "";
-    cell2 = "";
-    cell3 = "";
-    cell4 = "";
-    currentCell = 1;
+    resetVars();
+    currentRow++;
     continue;
   }
 
-  switch (currentCell) {
-    case 1:
-      cell1 += csvString[i];
-      break;
-    case 2:
-      cell2 += csvString[i];
-      break;
-    case 3:
-      cell3 += csvString[i];
-      break;
-    case 4:
-      cell4 += csvString[i];
-      break;
-
-    default:
-      console.log(`cell${currentCell} doesn't exist`);
-      break;
+  // Part 1 code
+  if (cells[currentCell]) {
+    cells[currentCell] += csvString[i];
+  } else {
+    cells[currentCell] = csvString[i];
   }
 
-  if (
-    (currentCell === 4 && csvString[i + 1] === "\n") ||
-    i + 1 === csvString.length
-  ) {
-    console.log(cell1, cell2, cell3, cell4);
+  //Part 2
+  if (table[currentRow] === undefined) {
+    table[currentRow] = [];
   }
+
+  if (table[currentRow][currentCell]) {
+    table[currentRow][currentCell] += csvString[i];
+  } else {
+    table[currentRow][currentCell] = csvString[i];
+  }
+
+  // Part 1
+  // if (
+  //   (currentCell === columns && csvString[i + 1] === '\n') ||
+  //   i + 1 === csvString.length
+  // ) {
+  //   // console.log(cell1, cell2, cell3, cell4);
+  //   console.log(cells.toString());
+  // }
 }
+
+console.log(`Part 1 and 2`);
+console.log(table);
+
+// ==========================================
+// Above is from Josh's overview
 
 // Part two
 // ==============================
 
-// Counts how many columns and stored in columns
 let cols = csvString.split("\n");
 
 let colsArray = [];
@@ -66,7 +82,7 @@ for (let i = 0; i < cols.length; i++) {
   colsArray.push(cells);
 }
 
-console.log(colsArray);
+// console.log(colsArray);
 
 // Part three
 // ==============================
@@ -100,7 +116,7 @@ for (let i = 1; i < colsArray.length; i++) {
   //Pushes each object into the array after the outer loop
   directory.push(listofObjects);
 }
-
+console.log(`Part 3:`);
 console.log(directory);
 
 // Part 4
@@ -119,6 +135,7 @@ directory.splice(1, 0, {
 // 3. Add the following object to the end of the array:
 //        { id: "7", name: "Bilbo", occupation: "None", age: "111" }
 directory.push({ id: "7", name: "Bilbo", occupation: "None", age: "111" });
+console.log(`Part 4C: `);
 console.log(directory);
 
 // Finally, use the values of each object within the array and the array’s length property to calculate the average age of the group. This calculation should be accomplished using a loop.
@@ -136,7 +153,7 @@ for (let i = 0; i < directory.length; i++) {
 
 averageAge /= amountOfPeople;
 console.log(
-  `The average age for the directory array is ${averageAge} years old.`
+  `Part 4D: The average age for the directory array is ${averageAge} years old.`
 );
 
 // Part 5: Full Circle
@@ -160,4 +177,6 @@ for (let i = 0; i < directory.length; i++) {
   csvData += "\n";
 }
 
+// This will print out our dataset into csv format
+console.log("Part 5: Our final set of data recreated back into CSV format");
 console.log(JSON.stringify(csvData.slice(0, -2)));
